@@ -79,6 +79,7 @@ FYI: stratified dummy F1=.46
 ### Materials
 * the seven pairs of vectors (en, ru, 16 GiB when unpacked) that we are using for accuracy and fluency modules can be downloaded [here](https://dev.rus-ltc.org/static/misc/vectors.tar.gz)
 * the quality labels and preprocessed data for each experimental set up is [here](https://dev.rus-ltc.org/static/misc/LMs_predict_quality.tar.gz)
+* learnt models are stored [here](https://dev.rus-ltc.org/static/misc/oracles.tar.gz)
 
 
 
