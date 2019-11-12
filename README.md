@@ -19,7 +19,7 @@ Learn language models on untranslated (genre-comparable) Russian corpus and meas
 1. **word-level perplexity averaged twice**
 LM probability for each word, given the context of k=2, turned into entropy understood as inverse probability (entropy per unit is the inverse probability of the test set (normalized for the number of words)) (word\_entropy = - 1 * np.log2(probability), and then exponentiated to get perplexities: lst\_perplexity0 = [2 ** ent for ent in sent_entropies], and text-level normalisation perplexities0.append(np.mean(lst_perplexity0))
 
-		|                train                   |                    good         |         bad         |
+| model |                train                   |                    good         |         bad         |
 |-------|----------------------------------------|---------------------------------|---------------------|
 |  HMM  |                   74.07                |       117,639.9                 |     120,406.2       |
 |-------|----------------------------------------|---------------------------------|---------------------|
@@ -30,7 +30,7 @@ LM probability for each word, given the context of k=2, turned into entropy unde
 
 1. **exponentiated average per-sentence entropy, normalised per number of sentences**: mean\_ent = np.mean(sent\_entropies), then one exponentiation for each sentence: perplexity = 2 ** mean\_ent. The method is described [here](https://www.inf.ed.ac.uk/teaching/courses/fnlp/lectures/04_slides-2x2.pdf) as per-word cross-entropy of the trigram model for every sentence: sum of negative logs of the words probabilities / number of words in the sent see lascarides) ## I don't understand why it is CROSS-entropy here??
 
-		|   train   |   good       |    bad      |
+| model	|   train   |   good       |    bad      |
 |-------|-----------|--------------|-------------|
 |  HMM  |    5.40   |    1104.89   |     1035.71 |
 |-------|-----------|--------------|-------------|
@@ -39,7 +39,7 @@ LM probability for each word, given the context of k=2, turned into entropy unde
 
 1. **Shanon's (cross)entropy: negative sum of products of probability and log of probability**: the negative sum of products of probability of a word observed in the train and log2 of the one predicted for the test (mind that a LM can be tested on the train), H(p) =-Σ p(x) log p(x); and perplexity is the exponentiation of the entropy.
 
-		|   train  |    good  |    bad   |
+| model	|   train  |    good  |    bad   |
 |-------|----------|----------|----------|
 |  HMM  |    1.14  | 1.065991 | 1.065730 |
 |-------|----------|----------|----------|
@@ -70,11 +70,11 @@ The translations were graded or ranked by either university translation teachers
 ## Results
 ### TQ classification
 binary classification on cross-entropies, XGBoost
-HMM trigram LM             .50
-RNN-based trigram LM       .56
-embeddings from LM (ELMo)  .54
+* HMM trigram LM             .50
+* RNN-based trigram LM       .56
+* embeddings from LM (ELMo)  .54
 
-FYI: stratified dummy F1   .46
+FYI: stratified dummy F1=.46
 
 ### Materials
 * the seven pairs of vectors (en, ru, 16 GiB when unpacked) that we are using for accuracy and fluency modules can be downloaded [here](https://dev.rus-ltc.org/static/misc/vectors.tar.gz)
