@@ -29,7 +29,7 @@ LM probability for each word, given the context of k=2, turned into entropy unde
 
 (NB! Insane values for RNN on the same training corpus, same test data, same script: LM\_oracles\_void.py)
 
-1. *exponentiated average per-sentence entropy, normalised per number of sentences*: 
+2. *exponentiated average per-sentence entropy, normalised per number of sentences*: 
 
 mean\_ent = np.mean(sent\_entropies), then one exponentiation for each sentence: perplexity = 2 ** mean\_ent. The method is described [here](https://www.inf.ed.ac.uk/teaching/courses/fnlp/lectures/04_slides-2x2.pdf) as per-word cross-entropy of the trigram model for every sentence: sum of negative logs of the words probabilities / number of words in the sent see lascarides) ## I don't understand why it is CROSS-entropy here??
 
@@ -40,7 +40,7 @@ mean\_ent = np.mean(sent\_entropies), then one exponentiation for each sentence:
 |  RNN  | 989,353.9 | 13,207,078.2 | 2,197,852.9 |
 |-------|-----------|--------------|-------------|
 
-1. *Shanon's (cross)entropy: negative sum of products of probability and log of probability*: 
+3. *Shanon's (cross)entropy: negative sum of products of probability and log of probability*: 
 
 the negative sum of products of probability of a word observed in the train and log2 of the one predicted for the test (mind that a LM can be tested on the train), H(p) =-Σ p(x) log p(x); and perplexity is the exponentiation of the entropy.
 
@@ -61,7 +61,7 @@ the negative sum of products of probability of a word observed in the train and 
 
 ### Our HTQ-labeled data
 542 hand-annotated targets in Russian to 105 English sources (all in the general domain of mass-media texts)
-The data was comes from [RusLTC](https://www.rus-ltc.org/static/html/about.html), which sources quality-labeled translations from a number of translation competitions and university exam settings.
+The data comes from [RusLTC](https://www.rus-ltc.org/static/html/about.html), which sources quality-labeled translations from a number of translation competitions and university exam settings.
 The translations were graded or ranked by either university translation teachers or by a panel of professional jurors in the contest settings. 
 
 | labels |  words  | texts |
