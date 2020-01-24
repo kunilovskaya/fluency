@@ -21,11 +21,10 @@ Learn language models on untranslated (genre-comparable) Russian corpus and meas
 LM probability for each word, given the context of k=2, turned into entropy understood as inverse probability (entropy per unit is the inverse probability of the test set (normalized for the number of words)) (word\_entropy = - 1 * np.log2(probability), and then exponentiated to get perplexities: lst\_perplexity0 = [2 ** ent for ent in sent_entropies], and text-level normalisation perplexities0.append(np.mean(lst_perplexity0))
 
 | model |                train                   |                    good         |         bad         |
-|-------|----------------------------------------|---------------------------------|---------------------|
+|------:|---------------------------------------:|--------------------------------:|--------------------:|
 |  HMM  |                   74.07                |       117,639.9                 |     120,406.2       |
-|-------|----------------------------------------|---------------------------------|---------------------|
 |  RNN  |95,783,640,050,446,191,521,813,233,664.0|299,911,314,419,825,181,196,288.0|503,315,467,063,556.4|
-|-------|----------------------------------------|---------------------------------|---------------------|
+
 
 (NB! Insane values for RNN on the same training corpus, same test data, same script: LM\_oracles\_void.py)
 
@@ -34,11 +33,9 @@ LM probability for each word, given the context of k=2, turned into entropy unde
 mean\_ent = np.mean(sent\_entropies), then one exponentiation for each sentence: perplexity = 2 ** mean\_ent. The method is described [here](https://www.inf.ed.ac.uk/teaching/courses/fnlp/lectures/04_slides-2x2.pdf) as per-word cross-entropy of the trigram model for every sentence: sum of negative logs of the words probabilities / number of words in the sent see lascarides) ## I don't understand why it is CROSS-entropy here??
 
 | model	|   train   |   good       |    bad      |
-|-------|-----------|--------------|-------------|
+|------:|----------:|-------------:|------------:|
 |  HMM  |    5.40   |    1104.89   |     1035.71 |
-|-------|-----------|--------------|-------------|
 |  RNN  | 989,353.9 | 13,207,078.2 | 2,197,852.9 |
-|-------|-----------|--------------|-------------|
 
 3. *Shanon's (cross)entropy: negative sum of products of probability and log of probability*: 
 
@@ -47,11 +44,8 @@ the negative sum of products of probability of a word observed in the train and 
 | model	|   train  |    good  |    bad   |
 |-------|----------|----------|----------|
 |  HMM  |    1.14  | 1.065991 | 1.065730 |
-|-------|----------|----------|----------|
 |  RNN  | 1.033206 | 1.031687 | 1.031241 |
-|-------|----------|----------|----------|
 | ELMo  | --       |  104.28  |  118.55  |
-|-------|----------|----------|----------|
 
 **The comparison above yields controvertional, counter-intuitive results that raise doubts about the sanity of the approach in general**
 
@@ -64,13 +58,11 @@ the negative sum of products of probability of a word observed in the train and 
 The data comes from [RusLTC](https://www.rus-ltc.org/static/html/about.html), which sources quality-labeled translations from a number of translation competitions and university exam settings.
 The translations were graded or ranked by either university translation teachers or by a panel of professional jurors in the contest settings. 
 
-| labels |  words  | texts |
-|--------|---------|-------|
-| good   | 127,192 |  329  |
-|--------|---------|-------|
-|  bad   |  87,367 |  213  |
-|--------|---------|-------|
-| source |  46,218 |  105  |
+ labels |  words  | texts |
+--------|---------|-------|
+ good   | 127,192 |  329  |
+  bad   |  87,367 |  213  |
+ source |  46,218 |  105  |
 
 ## Results
 ### TQ classification
